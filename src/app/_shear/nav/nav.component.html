@@ -1,1 +1,22 @@
-<p>nav works!</p>
+<mat-toolbar>
+    <mat-toolbar-row>
+        
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="toggelSideBar()">
+            <mat-icon>menu</mat-icon>
+          </button>
+
+        <span class="flex-fill"></span>
+
+        <button mat-button [matMenuTriggerFor] = "menu">
+            <mat-icon>person_outline</mat-icon>
+            Yassine
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item><mat-icon>assignment_ind</mat-icon>Profiles</button>
+            <button mat-menu-item><mat-icon>exit_to_app</mat-icon>logout</button>
+        </mat-menu>
+        
+    </mat-toolbar-row>
+</mat-toolbar>
+

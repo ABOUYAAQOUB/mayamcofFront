@@ -3,18 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MasterpageComponent } from './shear/masterpage/masterpage.component';
 import { CoreModule } from './_core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShearModule } from './_shear/shear.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MasterpageComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule,
+    ShearModule
   ],
   providers: [],
   bootstrap: [AppComponent]

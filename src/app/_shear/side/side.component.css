@@ -1,0 +1,19 @@
+
+.logo{
+    height: 64px;
+    background: #009fb7
+}
+.imglogo{
+    margin-right: 4px;
+    margin-bottom: 5px;
+    width: 35px;
+}
+.mat-mdc-button, .mat-mdc-outlined-button {
+    --mat-mdc-button-persistent-ripple-color: none;
+}
+.itemmenu{
+    margin-top: 1px;
+}
+.icon{
+    margin: 19px
+}
