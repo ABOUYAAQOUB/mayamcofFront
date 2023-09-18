@@ -14,7 +14,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import { MatTableModule} from '@angular/material/table';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
 const material = [
   MatButtonModule,
   MatSidenavModule,
@@ -25,7 +29,12 @@ const material = [
   MatMenuModule,
   MatExpansionModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatInputModule,
+  FormsModule,
+  MatTableModule,
+  MatProgressBarModule,
+  MatPaginatorModule
 ]
 
 
@@ -38,7 +47,8 @@ const material = [
   imports: [
     CommonModule,
     material,
-    RouterModule
+    RouterModule,
+  
   ],
   exports:[
     material

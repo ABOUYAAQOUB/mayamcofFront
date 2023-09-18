@@ -11,7 +11,7 @@ export class MasterpageComponent implements OnInit{
   SidebarOpend = true;
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  
   }
   
   sideBartoggle(){

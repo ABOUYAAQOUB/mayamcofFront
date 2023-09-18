@@ -7,3 +7,6 @@
   background-color: #e6e6ea;
   height: 100%;
 } 
+.mat-drawer-content {
+  overflow: hidden;
+}

@@ -10,7 +10,7 @@ export class NavComponent {
   x=5;
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
 
   toggelSideBar(){
