@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path:"dashboard",
     loadChildren:()=>import('./dashboard/dashboard.module').then(app=>app.DashboardModule)
+  },
+  {
+    path:"tache",
+    loadChildren:()=>import('./tache/tache.module').then(app=>app.TacheModule)
   }
 ];
 
