@@ -1,7 +1,7 @@
-<h2>{{id?'Modifier':'Ajouter'}}Fournisseur</h2>
+<h2>{{id?'Modifier ':'Ajouter '}}Clients</h2>
 <mat-card>
     <mat-card-header>
-      <button mat-fab extended  color="warn" class="btnR" [routerLink]="['mayamcof/admin/client']"><mat-icon>keyboard_arrow_left</mat-icon> Retour</button>
+      <button mat-fab extended  color="warn" class="btnR" [routerLink]="['/mayamcof/admin/client']"><mat-icon>keyboard_arrow_left</mat-icon> Retour</button>
         <span class="flex-fill"></span>
         <button mat-fab extended  color="primary" type="submit" form="form" [disabled]="!registerForm.valid">Enregistrer</button>
     </mat-card-header>

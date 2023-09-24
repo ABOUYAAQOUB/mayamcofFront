@@ -15,10 +15,13 @@ import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatTableModule} from '@angular/material/table';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SuppressionComponent } from './dialog/suppression/suppression.component';
+import { EditComponent } from './dialog/edit/edit.component';
 const material = [
   MatButtonModule,
   MatSidenavModule,
@@ -34,7 +37,9 @@ const material = [
   FormsModule,
   MatTableModule,
   MatProgressBarModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  ReactiveFormsModule,
+  MatDialogModule
 ]
 
 
@@ -42,7 +47,9 @@ const material = [
   declarations: [
     MasterpageComponent,
     NavComponent,
-    SideComponent
+    SideComponent,
+    SuppressionComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +58,9 @@ const material = [
   
   ],
   exports:[
-    material
+    material,
+    SuppressionComponent,
+    EditComponent
   ]
 })
 export class ShearModule { }

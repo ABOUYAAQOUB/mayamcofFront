@@ -9,11 +9,11 @@ const routes: Routes = [
     component:ConsulteComponent
   },
   {
-    path:"Ajouter",
+    path:"ajouter",
     component:EditComponent
   },
   {
-    path:"Modifier/:id",
+    path:"modifier/:id",
     component:EditComponent
   }
 ];

@@ -5,5 +5,5 @@ export interface Fournisseur {
 	// no contient pas des chaines de caracter et la taille 14 
 	tel:String;
 	// oblegatoire et egale 15 numeros
-	ICE:String;
+	ice:String;
 }

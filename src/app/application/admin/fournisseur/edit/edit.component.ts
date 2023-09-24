@@ -1,6 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Fournisseur } from 'src/app/_core/models/fournisseur';
 import { FournisseurService } from 'src/app/_core/service/fournisseur.service';
@@ -57,13 +56,11 @@ export class EditComponent implements OnInit{
           tel :this.registerForm.get('tel')?.value,
         } 
         
-        // this.serviceFournisseur.addFournisseur(this.fournisseur).subscribe(res =>{
-        // console.log(res);
-        // });
+     
 
         this.serviceFournisseur.addFournisseur(this.fournisseur).subscribe({
             next:data =>{
-              this.route.navigateByUrl('/mayamcof/admin/Fournisseur');
+              this.route.navigateByUrl('/mayamcof/admin/fournisseur');
             },
             error:err =>{
               this.registerForm.get('ice')?.setErrors({'exist':true});
@@ -81,7 +78,7 @@ export class EditComponent implements OnInit{
 
     this.serviceFournisseur.updateFournisseur(this.fournisseur).subscribe({
       next:data =>{
-        this.route.navigateByUrl('/mayamcof/admin/Fournisseur');
+        this.route.navigateByUrl('/mayamcof/admin/fournisseur');
       },
       error:err =>{
         this.registerForm.get('ice')?.setErrors({'exist':true});

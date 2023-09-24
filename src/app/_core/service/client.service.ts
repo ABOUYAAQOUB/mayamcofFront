@@ -8,7 +8,7 @@ import { Client } from '../models/client';
 })
 export class ClientService {
   apiURL = 'http://localhost:8081/';
-  token= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWFpbCIsInJvbGVzIjpbImFkbWluIl0sImlzcyI6Ii9tYXlhbWNvZi9sb2dpbiIsImV4cCI6MTY5NTU1NDIwOH0.EKkzzE0qoR7DfkHhhR1FizniTuz8eULbAOIKO25D1iE';
+  token= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNzaW5lIiwicm9sZXMiOlsidXNlciJdLCJpc3MiOiIvbWF5YW1jb2YvbG9naW4iLCJleHAiOjE2OTU1NjExNDR9.m6FyQFogKRWINWFBmV8IazBoi8fRxjYrro5f_fZWHS8';
   headers= new HttpHeaders({
     'Authorization': 'Bearer '+this.token
   });

@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit,ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Client } from 'src/app/_core/models/client';
 import { ClientService } from 'src/app/_core/service/client.service';
+import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppression.component';
 
 
 @Component({
@@ -18,12 +20,10 @@ export class ConsultComponent implements AfterViewInit, OnInit{
 
   ngOnInit(): void {
     this.getClients();
-    // this.id = this.activeRoute.snapshot.paramMap.get('id');
-    // this.deleteClient();
   }
 
   openDialog(name:string, id:number){
-    this.dialog.open('', {data:{table:'Client', name:name}}).afterClosed().subscribe(res =>{ 
+    this.dialog.open(SuppressionComponent, {data:{table:'Client', name:name}}).afterClosed().subscribe(res =>{ 
       if(res=='true'){
         this.deleteClient(id);
       }

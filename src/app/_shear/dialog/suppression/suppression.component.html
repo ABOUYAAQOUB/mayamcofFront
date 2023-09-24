@@ -1,0 +1,8 @@
+<h1 >Supprimer {{data.table}} </h1>
+<div mat-dialog-content>
+    <mat-icon class="warningStayle">warning</mat-icon>  Voulez-vous vraiment supprimer {{data.name}} ?
+</div>
+<div mat-dialog-actions class="boxButton">
+  <button mat-raised-button color="warn" mat-button mat-dialog-close mat-dialog-close="false">Non</button>
+  <button mat-stroked-button color="warn" mat-dialog-close mat-dialog-close="true" cdkFocusInitial>Oui</button>
+</div>

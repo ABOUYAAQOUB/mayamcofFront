@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ConsulteComponent } from './fournisseur/consulte/consulte.component';
-import { EditComponent } from './fournisseur/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -9,8 +7,16 @@ const routes: Routes = [
     loadChildren:()=>import('./dashboard/dashboard.module').then(app=>app.DashboardModule)
   },
   {
+    path:"client",
+    loadChildren:()=>import('./client/client.module').then(app=>app.ClientModule)
+  },
+  {
     path:"tache",
     loadChildren:()=>import('./tache/tache.module').then(app=>app.TacheModule)
+  },
+  {
+    path:"fournisseur",
+    loadChildren:()=>import('./fournisseur/fournisseur.module').then(app=>app.FournisseurModule)
   }
 ];
 

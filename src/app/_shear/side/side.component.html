@@ -10,17 +10,17 @@
     
        <mat-list-item  routerLink="#">
             <div class="d-inline-flex">
-             <mat-icon>dashboard</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Dashboard</span>
+             <mat-icon>dashboard</mat-icon><span class="ms-2 itemmenu" [routerLink]="['admin/dashboard']" *ngIf="opend">Dashboard</span>
             </div>
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>supervisor_account</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Clients</span>
+                <mat-icon>supervisor_account</mat-icon><span class="ms-2 itemmenu" [routerLink]="['/mayamcof/admin/client']" *ngIf="opend">Clients</span>
          </div>
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>local_shipping</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Fournisseurs</span>
+                <mat-icon>local_shipping</mat-icon><span class="ms-2 itemmenu"  [routerLink]="['/mayamcof/admin/fournisseur']" *ngIf="opend">Fournisseurs</span>
             </div>
         </mat-list-item>
         <mat-list-item href="#">
@@ -45,7 +45,7 @@
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>view_module</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Taches</span>
+                <mat-icon>view_module</mat-icon><span class="ms-2 itemmenu"  [routerLink]="['/mayamcof/admin/tache']" *ngIf="opend">Taches</span>
         </div>
         </mat-list-item>
         <mat-list-item href="#">

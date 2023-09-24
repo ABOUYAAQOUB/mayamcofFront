@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Tache } from 'src/app/_core/models/tache';
 import { TacheService } from 'src/app/_core/service/tache.service';
 import {MatDialog} from '@angular/material/dialog';
-import { MasterpageComponent } from 'src/app/_shear/masterpage/masterpage.component';
 import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppression.component';
 
 
@@ -26,8 +25,8 @@ export class ConsulteComponent implements AfterViewInit, OnInit{
   ngOnInit(): void {
     this.getTaches();
   }
-  openDialog(libele:string,id:number) {
-    this.dialog.open(SuppressionComponent,{data:{table:"Tache",libele:libele}}).afterClosed().subscribe(res =>{
+  openDialog(name:string,id:number) {
+    this.dialog.open(SuppressionComponent,{data:{table:"Tache",name:name}}).afterClosed().subscribe(res =>{
       if(res == "true"){
         this.deletTache(id);
       }

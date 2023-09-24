@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class FournisseurService {
 
   apiUrl = "http://localhost:8081/mayamcof/";
-  token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW16YSIsInJvbGVzIjpbInVzZXIiXSwiaXNzIjoiL21heWFtY29mL2xvZ2luIiwiZXhwIjoxNjk1NTUwNDYzfQ.00fappMZX0kb4fKGvlslfeSOyaYaILmHiGvpsxK-dRY";
+  token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNzaW5lIiwicm9sZXMiOlsidXNlciJdLCJpc3MiOiIvbWF5YW1jb2YvbG9naW4iLCJleHAiOjE2OTU1NjExNDR9.m6FyQFogKRWINWFBmV8IazBoi8fRxjYrro5f_fZWHS8";
   headers = new HttpHeaders({
       'Authorization':"Bearer "+this.token
    });

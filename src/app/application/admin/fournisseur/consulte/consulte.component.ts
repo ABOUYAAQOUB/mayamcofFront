@@ -3,9 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Fournisseur } from 'src/app/_core/models/fournisseur';
-import { Tache } from 'src/app/_core/models/tache';
 import { FournisseurService } from 'src/app/_core/service/fournisseur.service';
 import { MatDialog } from '@angular/material/dialog';
+import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppression.component';
 @Component({
   selector: 'app-consulte',
   templateUrl: './consulte.component.html',
@@ -18,7 +18,7 @@ export class ConsulteComponent implements AfterViewInit, OnInit{
   
   constructor(private dialog:MatDialog,private router:Router,private serviceFournisseur:FournisseurService){this.getData();}
   openDialog(name:string,id:number){
-    this.dialog.open(DialogExampleComponent,{data:{table:"Fournisseur",name:name}}).afterClosed().subscribe(res =>{
+    this.dialog.open(SuppressionComponent,{data:{table:"Fournisseur",name:name}}).afterClosed().subscribe(res =>{
     
       if(res == "true"){
         this.delete(id);
@@ -56,7 +56,7 @@ export class ConsulteComponent implements AfterViewInit, OnInit{
   delete(id:number){
     this.serviceFournisseur.deleteFournisseur(id).subscribe(res =>{
       
-    this.ngOnInit();
+      this.dataSource.data = this.dataSource.data.filter(fournisseur=>fournisseur.id!==id)
     });   
     
   }
