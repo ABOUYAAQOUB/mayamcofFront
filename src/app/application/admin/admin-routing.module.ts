@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren:()=>import('./dashboard/dashboard.module').then(app=>app.DashboardModule)
   },
   {
+    path:"Fournisseur",
+    loadChildren:()=>import('./fournisseur/fournisseur.module').then(app=>app.FournisseurModule)
+  },
+  {
     path:"client",
     loadChildren:()=>import('./client/client.module').then(app=>app.ClientModule)
   }
