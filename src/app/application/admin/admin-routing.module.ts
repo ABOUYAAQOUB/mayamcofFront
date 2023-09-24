@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path:"dashboard",
     loadChildren:()=>import('./dashboard/dashboard.module').then(app=>app.DashboardModule)
-  },
-  {
-    path:"Fournisseur",
-    loadChildren:()=>import('./fournisseur/fournisseur.module').then(app=>app.FournisseurModule)
   }
 ];
 
