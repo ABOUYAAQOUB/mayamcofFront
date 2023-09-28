@@ -21,7 +21,13 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SuppressionComponent } from './dialog/suppression/suppression.component';
-import { EditComponent } from './dialog/edit/edit.component';
+import { EditComponentP } from './dialog/edit/edit.component';
+import { MatSnackBarModule,} from '@angular/material/snack-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 const material = [
   MatButtonModule,
   MatSidenavModule,
@@ -39,7 +45,12 @@ const material = [
   MatProgressBarModule,
   MatPaginatorModule,
   ReactiveFormsModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatRadioModule,
+  MatSlideToggleModule
 ]
 
 
@@ -49,7 +60,7 @@ const material = [
     NavComponent,
     SideComponent,
     SuppressionComponent,
-    EditComponent
+    EditComponentP
   ],
   imports: [
     CommonModule,
@@ -60,7 +71,7 @@ const material = [
   exports:[
     material,
     SuppressionComponent,
-    EditComponent
+    EditComponentP
   ]
 })
 export class ShearModule { }

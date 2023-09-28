@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,Validators,FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tache } from 'src/app/_core/models/tache';
 import { TacheService } from 'src/app/_core/service/tache.service';
+import { EditComponentP } from 'src/app/_shear/dialog/edit/edit.component';
 
 @Component({
   selector: 'app-edit',
@@ -15,7 +17,7 @@ export class EditComponent implements OnInit {
   tache : Tache|any;
   id:number|any ;
 
-  constructor(private tacheService: TacheService,private router:Router,private activeRouter: ActivatedRoute){}
+  constructor(private _snackBar: MatSnackBar,private tacheService: TacheService,private router:Router,private activeRouter: ActivatedRoute){}
   
   ngOnInit(): void {
     this.id = this.activeRouter.snapshot.paramMap.get('id');
@@ -34,10 +36,23 @@ export class EditComponent implements OnInit {
   onSubmit(): void {
     if(this.id){
       this.update();
+      this.openSnackBar("Modifier");
     }else{
-      this.add()
+      this.add();
+      this.openSnackBar("Ajouter");
     }
     
+  }
+
+  openSnackBar(name:string) {
+    this._snackBar.openFromComponent(EditComponentP, {
+      duration: 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+      data: 'la Tache a éte Bien '+name
+    });
+
   }
 
   add(){

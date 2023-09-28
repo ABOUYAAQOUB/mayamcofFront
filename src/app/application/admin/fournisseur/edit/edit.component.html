@@ -1,7 +1,7 @@
 <h2>{{checkparam?"Modification ":"Ajouter "}}Fournisseur</h2>
 <mat-card>
     <mat-card-header>
-      <button mat-fab extended  color="warn" class="btnR" [routerLink]="['/mayamcof/admin/fournisseur']"><mat-icon>keyboard_arrow_left</mat-icon> Retour</button>
+      <button mat-fab extended  color="warn" class="btnR" [routerLink]="['/mayamcof/admin/fournisseur']"><mat-icon>keyboard_arrow_left</mat-icon>Retour</button>
         <span class="flex-fill"></span>
         <button mat-fab extended  color="primary" type="submit" form="form" [disabled]="!registerForm.valid">Enregistrer</button>
     </mat-card-header>
@@ -31,10 +31,10 @@
                   </div>
                   <div class="col">
                     <mat-form-field class="example-full-width">
-                        <mat-label>Nom Societe</mat-label>
+                        <mat-label>Nom Société</mat-label>
                         <input formControlName="nom" matInput placeholder="Ex. NABC">
                         <mat-error *ngIf="registerForm.get('nom')?.getError('required')">
-                          Nom Societe est <strong>Obligatoire</strong>
+                          Nom Société est <strong>Obligatoire</strong>
                         </mat-error>
                         <mat-error *ngIf="registerForm.get('nom')?.getError('pattern')">
                           Nom Societe ne commence pas par <strong>un chiffre</strong>
@@ -49,8 +49,11 @@
                           Telephone est <strong>Obligatoire</strong>
                          </mat-error>
                          <mat-error *ngIf="registerForm.get('tel')?.getError('pattern')">
-                          Telephone doit être des <strong>chiffres</strong>
+                          Telephone doit être des <strong>nombres</strong>
                         </mat-error>
+                        <mat-error *ngIf="registerForm.controls['tel'].hasError('minlength')">
+                          <strong>Taille minimale est 10 nombres</strong>
+                       </mat-error>
                     </mat-form-field>
                   </div>
                 </div>

@@ -14,16 +14,16 @@
                         <mat-label>libele</mat-label>
                         <input matInput  formControlName="libele"  placeholder="Tache 1" value="">
                             <mat-error *ngIf="form.get('libele')?.getError('exist')" >
-                              <strong>Tache deja existe</strong>
+                              <strong>Tache déjà existe</strong>
                             </mat-error> 
                              <mat-error  *ngIf="form.get('libele')?.getError('required')">
-                                libele is <strong>required</strong>
+                                Libele est <strong>Obligatoire</strong>
                               </mat-error>
                               <mat-error  *ngIf="form.get('libele')?.getError('minlength')">
-                                <strong>Longueur minimale et 4 </strong>
+                                <strong>Taille minimale est 5 caractères</strong>
                               </mat-error>
                               <mat-error  *ngIf="form.get('libele')?.getError('pattern')">
-                                <strong>ne commence pas par chiffre</strong>
+                                <strong>Ne commence pas par des chiffres</strong>
                               </mat-error>
                                                                                   
                     </mat-form-field>

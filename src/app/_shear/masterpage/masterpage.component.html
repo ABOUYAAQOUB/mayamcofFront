@@ -1,9 +1,14 @@
 <mat-drawer-container autosize class="example-container">
-    <mat-drawer mode="side" opened class="sidebar" ><app-side [opend]="SidebarOpend"></app-side></mat-drawer>
+
+    
+    <mat-drawer mode="side" opened class="sidebar" class="shadow">
+        <app-side [opend]="SidebarOpend"></app-side>
+    </mat-drawer>
     <mat-drawer-content>
         <app-nav (toggelSidebarForMe)="sideBartoggle()" ></app-nav>
         <div class="content">
             <router-outlet></router-outlet>
         </div>
     </mat-drawer-content>
+    
   </mat-drawer-container>

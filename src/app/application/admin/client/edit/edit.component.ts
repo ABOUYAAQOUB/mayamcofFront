@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar} from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/_core/models/client';
 import { ClientService } from 'src/app/_core/service/client.service';
+import { EditComponentP} from 'src/app/_shear/dialog/edit/edit.component';
 
 
 @Component({
@@ -13,16 +15,29 @@ import { ClientService } from 'src/app/_core/service/client.service';
 export class EditComponent implements OnInit{
   client:Client|any;
   id:number|any;
-  constructor(private builder:FormBuilder, private clientService:ClientService, private activeRoute: ActivatedRoute, private router:Router){}
+  constructor(private _snackBar: MatSnackBar,private builder:FormBuilder, private clientService:ClientService, private activeRoute: ActivatedRoute, private router:Router){}
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
-    this.getClient();
+    if(this.id){
+      this.getClient();
+    }
+   
   }
 
-  // registerForm:FormGroup = this.builder.group({
-  //   ice:this.builder.control('',Validators.compose([Validators.required,Validators.minLength(4)
-  //                               ,Validators.pattern(/^\d+$/)]))
-  // });
+  
+  
+  openSnackBar(name:string) {
+    this._snackBar.openFromComponent(EditComponentP, {
+      duration: 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+      data: 'le Client a éte Bien '+name
+    });
+
+  }
+
+
   
 
   registerForm:FormGroup = this.builder.group({
@@ -35,10 +50,12 @@ export class EditComponent implements OnInit{
   sub(){
       if(this.id!=null){
         this.updateClient();
+        this.openSnackBar("Modifier");
       }else{
         this.addClient();
+        this.openSnackBar("Ajouter");
       }
-    
+      
   }
 
   addClient(){
@@ -52,7 +69,12 @@ export class EditComponent implements OnInit{
       this.router.navigateByUrl("mayamcof/admin/client");
     },
     error:err=>{
-      this.registerForm.get('cin')?.setErrors({"existe":true});
+      if(err.error.champ=="Email"){
+        this.registerForm.get('email')?.setErrors({"existe":true});
+      }else{
+        this.registerForm.get('cin')?.setErrors({"existe":true});
+      }
+      
     }
     });
   }
@@ -76,10 +98,20 @@ export class EditComponent implements OnInit{
       nom:this.registerForm.get('nom')?.value,
       tel:this.registerForm.get('tel')?.value
     }
-    this.clientService.updateClient(this.client).subscribe(res => {
-      console.log(res);
-      this.router.navigateByUrl("mayamcof/admin/client");
-    });
+    this.clientService.updateClient(this.client).subscribe(
+      {next:data=>{
+        this.router.navigateByUrl("mayamcof/admin/client");
+      },
+      error:err=>{
+        if(err.error.champ=="Email"){
+          this.registerForm.get('email')?.setErrors({"existe":true});
+        }else{
+          this.registerForm.get('cin')?.setErrors({"existe":true});
+        }
+        
+      }
+      }
+    );
   }
 }
 

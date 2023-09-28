@@ -14,13 +14,13 @@
                         <mat-label>CIN</mat-label>
                         <input matInput  formControlName="cin" id="cin" placeholder="Ex. C869312" value="">
                         <mat-error *ngIf="registerForm.controls['cin'].hasError('existe')">
-                          CIN <strong>existe deja</strong>
+                          CIN <strong>déjà existe</strong>
                         </mat-error>
                         <mat-error *ngIf="registerForm.controls['cin'].hasError('required')">
                           CIN est <strong>Obligatoire</strong>
                         </mat-error>
-                        <mat-error *ngIf="registerForm.controls['cin'].hasError('minLength')">
-                           <strong>taille minimale est 5 caractère</strong>
+                        <mat-error *ngIf="registerForm.controls['cin'].hasError('minlength')">
+                           <strong>Taille minimale est 5 caractères</strong>
                         </mat-error>
                     </mat-form-field>
                     
@@ -41,6 +41,9 @@
                          <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
                             <strong>Forme incorrecte de l'email</strong> Ex. prenom.nom@gmail.com
                          </mat-error>
+                         <mat-error *ngIf="registerForm.controls['email'].hasError('existe')">
+                          Email <strong>déjà existe</strong>
+                       </mat-error>
                     </mat-form-field>
                   </div>
                   <div class="col">
@@ -50,8 +53,8 @@
                            <mat-error *ngIf="registerForm.controls['tel'].hasError('pattern')">
                             TELEPHONE <strong>contient que des nombres</strong>
                            </mat-error>
-                           <mat-error *ngIf="registerForm.controls['tel'].hasError('minLength')">
-                            <strong>min length 10</strong>
+                           <mat-error *ngIf="registerForm.controls['tel'].hasError('minlength')">
+                            <strong>Taille minimale est 10 nombres</strong>
                          </mat-error>
                     </mat-form-field>
                   </div>
