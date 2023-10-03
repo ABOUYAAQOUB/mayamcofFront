@@ -1,0 +1,53 @@
+<h2>Liste Commande</h2>
+<div>
+    <mat-form-field class="example-full-width">
+        <mat-label>Cherchez</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <mat-icon matSuffix class="chercher">find_replace</mat-icon>
+      </mat-form-field>
+      <button [routerLink]="['ajouter']"  mat-fab extended class="ajouter" color="primary">
+        <mat-icon>add_circle_outline</mat-icon>
+        Ajouter
+      </button>      
+</div>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="datecommande">
+      <th mat-header-cell *matHeaderCellDef> Date Commande </th>
+      <td mat-cell *matCellDef="let element"> {{element.datecommande | date}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="fournisseur">
+        <th mat-header-cell *matHeaderCellDef> Fournisseur </th>
+        <td mat-cell *matCellDef="let element"> {{element.fournisseur.nom}} </td>
+    </ng-container>
+   
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="action-update" [routerLink]="['modifier',element.id]" ><mat-icon class="iconUpdate">border_color</mat-icon></button> 
+            <button class="action-delete" (click)="openDialog(element.id,element.id)"><mat-icon class="iconDelete ">delete</mat-icon></button> 
+        </td>
+    </ng-container>
+   
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
