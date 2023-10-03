@@ -1,0 +1,85 @@
+<h2>Liste Constructions</h2>
+<div>
+    <mat-form-field class="example-full-width">
+        <mat-label>Chercher</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Nom libele" #input>
+        <mat-icon matSuffix class="chercher">find_replace</mat-icon>
+      </mat-form-field>
+      <button [routerLink]= " total>0 ? ['modifier'] : ['ajouter']"   mat-fab extended class="ajouter" color="primary">
+        <mat-icon>add_circle_outline</mat-icon>
+       {{ total > 0 ? "Modifier ":"Ajouter "}}
+      </button>
+</div>
+
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Item Column -->
+  
+
+    <!-- Cost Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantite">
+      <th mat-header-cell *matHeaderCellDef>Quantite </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.quantite}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tache">
+      <th mat-header-cell *matHeaderCellDef>Tache </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.tache.libele}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unite">
+      <th mat-header-cell *matHeaderCellDef>Unite </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.unite}} </td>
+    </ng-container>
+    <ng-container matColumnDef="prix">
+      <th mat-header-cell *matHeaderCellDef>Prix </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.prix}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PrixTotal">
+      <th mat-header-cell *matHeaderCellDef>Prix Total </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.prix * transaction.quantite}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+          <button class="action-update"  ><mat-icon class="iconUpdate">border_color</mat-icon></button> 
+          <button class="action-delete" (click)="openDialog(element.id)"><mat-icon class="iconDelete ">delete</mat-icon></button> 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="disclaimer" >
+      <td mat-footer-cell *matFooterCellDef colspan="7" class="justify-content-center">
+        <b class="ms-3">Total HT</b><b class="ms-4"> {{total}} </b> 
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="disclaimer1">
+      <td mat-footer-cell *matFooterCellDef colspan="7">
+        <b class="ms-3">TVA</b> <b class="ms-5"> {{total * 0.2 }} </b> 
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="disclaimer2">
+      <td mat-footer-cell *matFooterCellDef colspan="7">
+        <b class="ms-3">Total TTC</b><b class="ms-3"> {{total + total * 0.2 }} </b> 
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
+    <tr mat-footer-row *matFooterRowDef="['disclaimer1']" class="example-second-footer-row"></tr>
+    <tr mat-footer-row *matFooterRowDef="['disclaimer2']" class="example-second-footer-row"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[2]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</section>
+
+
