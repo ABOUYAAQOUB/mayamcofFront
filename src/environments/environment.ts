@@ -1,3 +1,4 @@
 export const environment = {
-    apiURL : 'http://localhost:8081/mayamcof'
+    apiURL : 'http://localhost:8081/mayamcof',
+    Token:''
 };
