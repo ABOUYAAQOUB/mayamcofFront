@@ -17,7 +17,16 @@ const routes: Routes = [
   {
     path:"fournisseur",
     loadChildren:()=>import('./fournisseur/fournisseur.module').then(app=>app.FournisseurModule)
+  },
+  {
+    path:"construction/:id",
+    loadChildren:()=>import('./construction/construction.module').then(app=>app.ConstructionModule)
+  },
+  {
+    path:"commande",
+    loadChildren:()=>import('./commande/commande.module').then(app=>app.CommandeModule)
   }
+
 ];
 
 @NgModule({

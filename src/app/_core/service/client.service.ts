@@ -11,7 +11,7 @@ export class ClientService {
   
   token= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNzaW5lIiwicm9sZXMiOlsidXNlciJdLCJpc3MiOiIvbWF5YW1jb2YvbG9naW4iLCJleHAiOjE2OTU5ODM2NDl9.38WC9NBkXMb8rFwLZhUTW1HURf2qdfPd2yz1z_XeO34';
   headers= new HttpHeaders({
-    'Authorization': 'Bearer '+this.token
+    'Authorization': 'Bearer '+environment.Token
   });
   constructor(private http:HttpClient) { }
   getClients() :Observable<Client[]>{
