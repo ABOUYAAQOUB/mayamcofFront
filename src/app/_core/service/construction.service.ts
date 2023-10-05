@@ -13,7 +13,7 @@ export class ConstructionService {
   TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNzaW5lIiwicm9sZXMiOlsidXNlciJdLCJpc3MiOiIvbWF5YW1jb2YvbG9naW4iLCJleHAiOjE2OTYyODMwMjh9.Y17GhUvge8SfXBbm1Rn8JiCIt6Breeu1gasb_FW9gdw'
 
   headers = new HttpHeaders({
-    'Authorization': 'Bearer '+this.TOKEN
+    'Authorization': 'Bearer '+environment.Token
   });
 
 

@@ -12,7 +12,7 @@ export class TacheService {
   TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNzaW5lIiwicm9sZXMiOlsidXNlciJdLCJpc3MiOiIvbWF5YW1jb2YvbG9naW4iLCJleHAiOjE2OTU5Mjk1MzF9.6lyYzE0zvz1xZchbyBzZ8p8WmvO3MgsyK42mdzYyvDE'
 
   headers = new HttpHeaders({
-    'Authorization': 'Bearer '+this.TOKEN
+    'Authorization': 'Bearer '+environment.Token
   });
 
   constructor(private http: HttpClient) { }

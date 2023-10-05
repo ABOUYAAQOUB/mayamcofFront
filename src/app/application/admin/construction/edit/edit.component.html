@@ -22,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="w-100" *ngFor="let item of itemControls.controls; let i = index" [formGroupName]="i"> 
+    <tr class="w-100" *ngFor="let item of itemControls.controls | paginate: { itemsPerPage: 3, currentPage: p }; let i = index" [formGroupName]="fieldGlobalIndex(i)"> 
       <td>
         <mat-form-field>
           <mat-label>choisir un Tache</mat-label>
@@ -70,7 +70,7 @@
       </td>
       <td> 
         <div class="example-button-container">
-          <a mat-mini-fab color="warn" class="mt-2" (click)=" removeItem(i)">
+          <a mat-mini-fab color="warn" class="mt-2" (click)=" openDialog(fieldGlobalIndex(i))">
             <mat-icon>delete_forever</mat-icon>
           </a>
         </div>
@@ -78,7 +78,8 @@
     </tr>      
   </tbody>
     
-</table> 
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 
   </div>
 

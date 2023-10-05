@@ -27,6 +27,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatNativeDateModule} from '@angular/material/core';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const material = [
   MatButtonModule,
@@ -50,7 +52,8 @@ const material = [
   MatCheckboxModule,
   MatDatepickerModule,
   MatRadioModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatNativeDateModule
 ]
 
 
@@ -71,7 +74,8 @@ const material = [
   exports:[
     material,
     SuppressionComponent,
-    EditComponentP
+    EditComponentP,
+    NgxPaginationModule
   ]
 })
 export class ShearModule { }
