@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Consommation } from 'src/app/_core/models/consommation';
 import { Produit } from 'src/app/_core/models/produit';
 import { ConsommationService } from 'src/app/_core/service/consommation.service';
+import { ProduitService } from 'src/app/_core/service/produit.service';
 import { EditComponentP } from 'src/app/_shear/dialog/edit/edit.component';
 import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppression.component';
 
@@ -25,6 +26,7 @@ export class EditComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
     private ConsommationService:ConsommationService,
+    private ProduitService:ProduitService,
     private router:Router,
     private activeRouter: ActivatedRoute,
     private fb : FormBuilder,
@@ -51,7 +53,7 @@ export class EditComponent implements OnInit {
   }
 
   getProduit(){
-    this.ConsommationService.getProduits().subscribe({
+    this.ProduitService.getProduits().subscribe({
       next: data => {
         this.produits = data;
       },

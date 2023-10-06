@@ -28,7 +28,6 @@ export class ConsulteComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activeRouter.snapshot.paramMap.get('id');
-    console.log(this.id);
      this.getConsommations();
   }
 
@@ -49,7 +48,7 @@ export class ConsulteComponent implements OnInit {
     this.ConsommationService.getConsommationC(this.id).subscribe({
       next: data => {
         this.dataSource.data = data;
-        this.idT = data[0].construction.tache.id;
+        this.idT = data[0].construction.terrain.id;
       },
       error: err => {
         console.log(err.error.message)

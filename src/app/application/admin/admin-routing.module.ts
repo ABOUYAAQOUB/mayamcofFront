@@ -25,6 +25,14 @@ const routes: Routes = [
   {
     path:"commande",
     loadChildren:()=>import('./commande/commande.module').then(app=>app.CommandeModule)
+  },
+  {
+    path:"consommation/:id",
+    loadChildren:()=>import('./consommation/consommation.module').then(app=>app.ConsommationModule)
+  },
+  {
+    path:"produit",
+    loadChildren:()=>import('./produit/produit.module').then(app=>app.ProduitModule)
   }
 
 ];
