@@ -1,0 +1,72 @@
+<h2>Consommation</h2>
+<mat-card>
+  <mat-card-header>
+    <button mat-fab extended  color="warn" class="btnR"  (click)="retourn()"><mat-icon>keyboard_arrow_left</mat-icon>Retour</button>
+    <button mat-stroked-button  class="btnA"  (click)="addItem(null)">Ajouter ligne</button>
+    <span class="flex-fill"></span>
+    <button mat-fab extended class="btn" color="primary" type="submit" form="form" [disabled]="!form.valid">Enregistrer</button> 
+  </mat-card-header>
+  <mat-card-content class="mt-3">
+<form [formGroup]="form" class="example-form" (ngSubmit)="onSubmit()" id="form">
+  
+  <div class="table-responsive mat-elevation-z8" formArrayName="items">  
+    
+    <table  class="table"  >
+      <thead>
+      <tr class="table-active text-center"> 
+        <th class="th-lg">produit</th>
+        <th class="th-lg">Quantite</th>      
+        <th class="th-lg">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="w-100" *ngFor="let item of itemControls.controls | paginate: { itemsPerPage: 3, currentPage: p }; let i = index" [formGroupName]="fieldGlobalIndex(i)"> 
+      <td>
+        <mat-form-field class="w-100">
+          <mat-label>choisir un Produit</mat-label>
+          <mat-select formControlName="produit"  required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let produit of produits" [value]="produit.id">
+              {{produit.nom}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="item.get('produit')?.getError('required')">Veuillez choisir un produit</mat-error>
+          <mat-hint>{{form.get('produit')?.value?.sound}}</mat-hint>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Quantite</mat-label>
+          <input matInput type="number" formControlName="quantite" placeholder="100" value="">
+          <mat-error  *ngIf="item.get('quantite')?.getError('required')">
+            Quantite est <strong>Obligatoire</strong>
+          </mat-error>                                                                                 
+      </mat-form-field>
+      </td>
+     
+      <td> 
+        <div class="example-button-container">
+          <a mat-mini-fab color="warn" class="mt-2" (click)=" openDialog(fieldGlobalIndex(i))">
+            <mat-icon>delete_forever</mat-icon>
+          </a>
+        </div>
+      </td>
+    </tr>      
+  </tbody>
+    
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+
+
+
+</form>
+
+</mat-card-content>
+    
+</mat-card>
+
+
+
+ 

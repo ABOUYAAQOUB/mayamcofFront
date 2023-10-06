@@ -1,0 +1,21 @@
+.example-form {
+    width: auto;
+  }
+  .example-full-width{
+    width: 100%;
+  }
+
+  .flex-fill{
+    flex: 1 1 auto!important;
+}
+.btnR{
+    padding-left: 11px;
+    padding-right: 18px;
+    width: 100px;
+    height: 41px;
+}
+.btnA{
+  margin-left: 5px;
+  height: 41px;
+  border-radius: 20px;
+}
