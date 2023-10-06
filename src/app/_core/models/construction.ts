@@ -5,13 +5,13 @@ import { Terrain } from "./terrain";
 export interface Construction {
     id:Number;
 	
-	unite:Number;
+	unite:string;
 
 	quantite:Number;
 
 	prix:Number;
 
-	confirmer:boolean;
+	 confirmer:boolean;
 	
 	terrain:Terrain;	
 	
