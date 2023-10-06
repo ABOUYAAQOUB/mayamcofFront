@@ -11,7 +11,7 @@ export class CommandeService {
 
   token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW16YSIsInJvbGVzIjpbInVzZXIiXSwiaXNzIjoiL21heWFtY29mL2xvZ2luIiwiZXhwIjoxNjk2MzYzMTc0fQ.MP3MrHq8GRRrG37KhorvgV7jULZ6sL0CAd9fkdpqD3M";
   headers = new HttpHeaders({
-      'Authorization':"Bearer "+this.token
+      'Authorization':"Bearer "+environment.Token
   });
 
   constructor(private http:HttpClient) { }

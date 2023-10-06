@@ -1,68 +1,113 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Produit } from 'src/app/_core/models/produit';
+import { ProduitService } from 'src/app/_core/service/produit.service';
+import { EditComponentP } from 'src/app/_shear/dialog/edit/edit.component';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent {
-//   fournisseurs:Fournisseur|any;
-//   produits:Produit|any;
-//   checkparam:number|any;
-//   detailiCimmande:DetailCommande|any;
-//   commande:Commande|any;
+export class EditComponent implements OnInit{
+  
+  produit:Produit|any;
+  checkparam:number|any;
+ 
 
-//   constructor(private builder:FormBuilder,private serviceProduit:ProduitService,private serviceFournisseur:FournisseurService) {   
+  constructor(private builder:FormBuilder,private serviceProduit:ProduitService,private _snackBar: MatSnackBar,private route:Router,private routeparam:ActivatedRoute) {   
 
-//   }
+  }
 
-//   ngOnInit(): void {
-//     this.getFournisseurs();
-//     this.getProduits();
-//   }
+  ngOnInit(): void {
 
-//   registerForm:FormGroup = this.builder.group({
-//       date:new FormControl<Date|null>(null,Validators.compose([Validators.required])),      
-//       fournisseur: new FormControl<Fournisseur|null>(null,Validators.compose([Validators.required])),
-//       produit:new FormControl<Produit|null>(null,Validators.compose([Validators.required])),
-//       prix:new FormControl('',Validators.compose([Validators.required])),
-//       quantite:new FormControl('',Validators.compose([Validators.required]))
-//     });
+    this.checkparam = this.routeparam.snapshot.paramMap.get('id');
+    this.initialFormGroupe();
+    if(this.checkparam){
+      this.getProduit(this.checkparam);
+    }
+  }
 
-//  sub(){
-//   if(this.registerForm.valid){
+  getProduit(id:number){
+    this.serviceProduit.getProduit(id).subscribe(res =>{
+      this.registerForm.setValue({
+        nom:res.nom
+      });
+    });
+  }
+  
+  initialFormGroupe(): void {
+    this.registerForm = new FormGroup({
+      nom: new FormControl(null, [Validators.required,Validators.minLength(3)])
+    });
+  }
+  openSnackBar(name:string) {
+    this._snackBar.openFromComponent(EditComponentP, {
+      duration: 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+      data: 'le Produit a éte Bien '+name
+    });
 
-//     this.detailiCimmande={
-//       //commande_id:this.commande.id,
-//       produit_id:(this.registerForm.get('produit')?.value).id,
-//       prix:this.registerForm.get('prix')?.value,
-//       quantite:this.registerForm.get('quantite')?.value
-//     };
+  }
 
-//     this.commande = {
-//       datecommande:(this.registerForm.get('date')?.value).toLocaleDateString(),
-//       fournisseur_id:(this.registerForm.get('fournisseur')?.value).id,
-//     }
+  registerForm:FormGroup = this.builder.group({
+      nom:new FormControl('',Validators.compose([Validators.required,Validators.minLength(3)]))
+  });
 
-//     console.log(this.commande);
-//     console.log(this.detailiCimmande);
+ sub(){
+  if(this.registerForm.valid){
 
-//   }
+    if(this.checkparam){
 
-//  }
+      this.update();
+      
+    }else{
+      this.add()
+      
+    }    
 
-//  getFournisseurs(){
-//   this.serviceFournisseur.getFournisseurs().subscribe(res =>{
-//     this.fournisseurs = res;
-//     console.log(this.fournisseurs);
-//   });
-//  }
+  }
 
-//  getProduits(){
-//   this.serviceProduit.getProduits().subscribe(res =>{
-//     this.produits = res;
-//     console.log(this.produits);
-//   });
-//  }
+ }
+
+add(){
+  this.produit={
+    nom:this.registerForm.get('nom')?.value
+  };
+    this.serviceProduit.addProduit(this.produit).subscribe({
+      next:data =>{
+        this.openSnackBar("Ajouter");
+        this.route.navigateByUrl('/mayamcof/admin/produit');
+      },
+      error:err =>{
+        if(err.error.champ=="Nom")
+          this.registerForm.get('nom')?.setErrors({'exist':true});
+      }
+    });
+}
+
+update(){
+  this.produit={
+    id:this.checkparam,
+    nom:this.registerForm.get('nom')?.value
+  };
+
+  this.serviceProduit.updateProduit(this.produit).subscribe({
+    next:data =>{
+      this.openSnackBar("Modifier");
+      this.route.navigateByUrl('/mayamcof/admin/produit');
+    },
+    error:err =>{
+      if(err.error.champ=="Nom")
+        this.registerForm.get('nom')?.setErrors({'exist':true});
+    }
+  });
+}
+
+
 
 }

@@ -11,6 +11,10 @@ import { CommandeService } from 'src/app/_core/service/commande.service';
 import { DetailcommandeService } from 'src/app/_core/service/detailcommande.service';
 import { FournisseurService } from 'src/app/_core/service/fournisseur.service';
 import { ProduitService } from 'src/app/_core/service/produit.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditComponentP } from 'src/app/_shear/dialog/edit/edit.component';
+import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppression.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -19,7 +23,7 @@ import { ProduitService } from 'src/app/_core/service/produit.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit{
-
+p= 1;
   public detailCommandeForm: FormGroup;
   fournisseurs:Fournisseur|any;
   produits:Produit|any;
@@ -27,8 +31,8 @@ export class EditComponent implements OnInit{
   detailCommande:DetailCommande|any;
   isCheckAll: boolean = false;
   checkparam:number|any;
-
-  constructor(private route:Router,private routeparam:ActivatedRoute,private fb: FormBuilder,private produitService:ProduitService,private fournisseurService:FournisseurService,private commandeService:CommandeService,private detailCommandeService:DetailcommandeService) {
+  
+  constructor(public dialog: MatDialog,private _snackBar: MatSnackBar,private route:Router,private routeparam:ActivatedRoute,private fb: FormBuilder,private produitService:ProduitService,private fournisseurService:FournisseurService,private commandeService:CommandeService,private detailCommandeService:DetailcommandeService) {
     
     this.detailCommandeForm = this.fb.group({
         tableRows: this.fb.array([],[Validators.required]),
@@ -39,28 +43,35 @@ export class EditComponent implements OnInit{
     this.checkparam = this.routeparam.snapshot.paramMap.get('id');
 
     if(this.checkparam){
+
+      this.detailCommandeForm.get('fournisseur')?.disable();
+      this.detailCommandeForm.get('date')?.disable();
+
         this.commandeService.getCommande(this.checkparam).subscribe(res =>{
-          console.log(res);
+          //console.log(res);
           this.commande = res;
+          
           this.detailCommandeForm.setValue({
             tableRows:[],
             date:new Date(res.datecommande),
             fournisseur:res.fournisseur.id
           });
-          console.log(this.detailCommandeForm.value);
+
+         // console.log(this.detailCommandeForm.value);
         });
+
         this.detailCommandeService.getDetailCommandesByCommande(this.checkparam).subscribe(res =>{
           console.log(res);
           for (let index = 0; index < res.length; index++) {
             const element = res[index];
-            const test = this.fb.group({
+            const row = this.fb.group({
               prix: [element.prix,[Validators.required]],
               quantite: [element.quantite,[Validators.required]],
               produit: new FormControl(element.produit.id,Validators.compose([Validators.required])),
               idDetaliCommande: [element.id]
             });
 
-            this.addRowupdate(test);
+            this.addRowupdate(row);
           }
         });
     }else{        
@@ -70,11 +81,36 @@ export class EditComponent implements OnInit{
     
     
   }
+
+  openDialog(name:string,id:number) {
+    this.dialog.open(SuppressionComponent,{data:{table:"Detail Commande",name:name}}).afterClosed().subscribe(res =>{
+      if(res == "true"){
+        this.deleteDeatail(id);
+      }
+    })
+  }
+
+  fieldGlobalIndex(index:number) {
+   
+    return 2 * (this.p - 1) + index;
+  }
+
   ngOnInit(): void {
        this.getFournisseurs();
        this.getProduits();
+       
   }
 
+  openSnackBar(name:string) {
+    this._snackBar.openFromComponent(EditComponentP, {
+      duration: 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+      data: 'La Commande a éte Bien '+name
+    });
+
+  }
   sub(){
     if(this.detailCommandeForm.valid){
 
@@ -91,7 +127,7 @@ export class EditComponent implements OnInit{
       
     }
   }
-// getFormControls.controls[i].get('produit')?.getRawValue() == "prod1"
+
   createFormGroup(): FormGroup {
     return this.fb.group({
       prix: ['',[Validators.required]],
@@ -116,27 +152,9 @@ export class EditComponent implements OnInit{
     control.push(test);
   }
 
-  // checkAll(checkVal: boolean) {
-    
-  //   this.getFormControls.controls.forEach(formGroup => {
-  //     formGroup.get('ischecked')?.setValue(checkVal);
-  //   });
-  // }
 
-  // onStatusChange(event:any, index: number) {
-  //   //debugger
-  //   if(event.target.value == 'deactive'){
-  //     const control =  this.detailCommandeForm.get('tableRows') as FormArray;
-  //     control.controls[index].get('state')?.disable();
-  //     control.controls[index].get('city')?.disable();
-  //   } else {
-  //     const control =  this.detailCommandeForm.get('tableRows') as FormArray;
-  //     control.controls[index].get('state')?.enable();
-  //     control.controls[index].get('city')?.enable();
-  //   }
-  // }
 
-  removeEmployee(index:number) {
+  deleteDeatail(index:number) {
 
     const control =  this.detailCommandeForm.get('tableRows') as FormArray;
 
@@ -148,10 +166,7 @@ export class EditComponent implements OnInit{
   }
 
 
-  // onSaveForm() {
-  //   const formValue = this.detailCommandeForm.value;
-  //   console.log(this.detailCommandeForm.get('tableRows')?.valid);
-  // }
+  
 
   getFournisseurs(){
     this.fournisseurService.getFournisseurs().subscribe(res =>{
@@ -187,12 +202,10 @@ export class EditComponent implements OnInit{
           console.log(res);
         });
       }
+      this.openSnackBar("Ajouter");
     });
     
-      //  console.log(this.commande);
-    //this.commandeService.addCommande()
-   // console.log('--------------- les Detail -----------------');
-    // console.log(this.detailCommandeForm.get('tableRows')?.value);
+    
   }
 
   update(){
@@ -223,6 +236,7 @@ export class EditComponent implements OnInit{
           }
 
         }
+        this.openSnackBar("Modifier");
   }
   
  

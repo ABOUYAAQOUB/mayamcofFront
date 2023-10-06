@@ -1,8 +1,8 @@
-<h2>Liste Commande</h2>
+<h2>Liste Commandes</h2>
 <div>
     <mat-form-field class="example-full-width">
-        <mat-label>Cherchez</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <mat-label>Rechercher</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher" #input>
         <mat-icon matSuffix class="chercher">find_replace</mat-icon>
       </mat-form-field>
       <button [routerLink]="['ajouter']"  mat-fab extended class="ajouter" color="primary">
@@ -42,9 +42,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     
+    
     <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
+      <td class="mat-cell text-center pt-2" colspan="4"><b>Aucune donnée trouvée</b></td>
+    </tr>
 
   </table>
   <mat-paginator [pageSizeOptions]="[5]"

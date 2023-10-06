@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProduitRoutingModule } from './produit-routing.module';
 import { ConsulteComponent } from './consulte/consulte.component';
 import { EditComponent } from './edit/edit.component';
+import { ShearModule } from 'src/app/_shear/shear.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { EditComponent } from './edit/edit.component';
   ],
   imports: [
     CommonModule,
-    ProduitRoutingModule
+    ProduitRoutingModule,
+    ShearModule
   ]
 })
 export class ProduitModule { }
