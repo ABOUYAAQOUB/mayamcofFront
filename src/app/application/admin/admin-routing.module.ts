@@ -22,10 +22,10 @@ const routes: Routes = [
     path:"construction/:id",
     loadChildren:()=>import('./construction/construction.module').then(app=>app.ConstructionModule)
   },
-  // {
-  //   path:"commande",
-  //   loadChildren:()=>import('./commande/commande.module').then(app=>app.CommandeModule)
-  // }
+  {
+    path:"commande",
+    loadChildren:()=>import('./commande/commande.module').then(app=>app.CommandeModule)
+  }
 
 ];
 

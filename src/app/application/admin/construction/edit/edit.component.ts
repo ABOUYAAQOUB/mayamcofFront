@@ -46,6 +46,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activeRouter.snapshot.paramMap.get('id');
+    console.log(this.id);
     this.initialFormGroupe();
     this.getConstructions();
     this.getTaches();
@@ -56,6 +57,7 @@ export class EditComponent implements OnInit {
     this.constructionService.getConstructionsT(this.id).subscribe({
       next: data => {
         this.constructions = data;
+        console.log(data)
         this.displayItems();
         this.pagination(this.itemControls,0,3);
       },
@@ -142,7 +144,7 @@ export class EditComponent implements OnInit {
         quantite:ele.quantite,
         tache:{id:ele.tache},
         prix : ele.prix,
-        terrain:{id:1}
+        terrain:{id:this.id}
       } 
       if(ele.id){
           //modifier

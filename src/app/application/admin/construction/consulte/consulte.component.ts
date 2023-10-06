@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Construction } from 'src/app/_core/models/construction';
 import { ConstructionService } from 'src/app/_core/service/construction.service';
@@ -27,11 +27,13 @@ export class ConsulteComponent implements OnInit{
 
   constructor(private constructionService:ConstructionService,
               public dialog: MatDialog,
+              private router:Router,
               private activeRouter: ActivatedRoute,){}
   
   ngOnInit(): void {
     
     this.id = this.activeRouter.snapshot.paramMap.get('id');
+    console.log(this.id);
     this.getConstructions();
   }
 
@@ -72,6 +74,10 @@ export class ConsulteComponent implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
+
+  retourn(){
+    this.router.navigateByUrl('mayamcof/admin/terrain');
+ }
 
 
 
