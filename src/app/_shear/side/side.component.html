@@ -27,22 +27,22 @@
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>layers</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Produits</span>
+                <mat-icon>layers</mat-icon><span class="ms-2 itemmenu" *ngIf="opend" [routerLink]="['/mayamcof/admin/produit']">Produits</span>
             </div>
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>shopping_cart</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Commande</span>
+                <mat-icon>shopping_cart</mat-icon><span class="ms-2 itemmenu" *ngIf="opend" [routerLink]="['/mayamcof/admin/commande']">Commandes</span>
         </div>
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>domain</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Constructions</span>
+                <mat-icon>domain</mat-icon><span class="ms-2 itemmenu" *ngIf="opend" [routerLink]="['/mayamcof/admin/terrain']">Terrains</span>
         </div>
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>rowing</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Employers</span>
+                <mat-icon>rowing</mat-icon><span class="ms-2 itemmenu" *ngIf="opend" [routerLink]="['/mayamcof/admin/employer']">Employers</span>
         </div>
         </mat-list-item>
         <mat-list-item href="#">

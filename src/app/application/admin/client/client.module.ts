@@ -17,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ClientRoutingModule,
     ShearModule,
-    ReactiveFormsModule
   ]
 })
 export class ClientModule { }

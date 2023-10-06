@@ -43,12 +43,4 @@ export class ConstructionService {
     return this.http.delete(environment.apiURL+ "/construction/"+id,{headers:this.headers});
   }
 
-
-
-
-
-  getTerrin(): Observable<Terrain[]> {
-    return this.http.get<Terrain[]>(environment.apiURL+ "/terrains",{headers:this.headers});
-  } 
-
 }

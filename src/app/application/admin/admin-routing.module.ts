@@ -34,6 +34,14 @@ const routes: Routes = [
     path:"produit",
     loadChildren:()=>import('./produit/produit.module').then(app=>app.ProduitModule)
   }
+  {
+    path:"employer",
+    loadChildren:()=>import('./employer/employer.module').then(app=>app.EmployerModule)
+  },
+  {
+    path:"terrain",
+    loadChildren:()=>import('./terrain/terrain.module').then(app=>app.TerrainModule)
+  }
 
 ];
 
