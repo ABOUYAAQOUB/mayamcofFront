@@ -1,0 +1,57 @@
+.ajouter{
+    float: right;
+}
+.matInput{
+    border-radius: 200px;
+}
+.chercher{
+    color: #2747fb;
+}
+
+.action-update{
+    background-color: white;
+    border: none;
+    box-shadow: 5px 2px 8px 0px #d5e0f1;
+    margin-right: 10px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+ .action-update:hover{
+    box-shadow: 5px 2px 8px 0px #94b4e6;
+}
+
+.action-delete{
+    background-color: white;
+    border: none;
+    box-shadow: 5px 2px 8px 0px #f1d5d5;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+ .action-delete:hover{
+    box-shadow: 5px 2px 8px 0px #e69494;
+}
+
+.action-construction{
+    background-color: white;
+    border: none;
+    box-shadow: 5px 2px 8px 0px #d5e0f1;
+    margin-left: 10px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+ .action-construction:hover{
+    box-shadow: 5px 2px 8px 0px #4bbe64;
+}
+
+.iconUpdate{
+    color: #2747fb;
+}
+.iconDelete{
+    color: rgb(189, 8, 8);
+}
+.iconConstruction{
+    color: rgb(3, 136, 21);
+}
