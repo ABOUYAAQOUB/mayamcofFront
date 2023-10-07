@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class EmployerService {
   token= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWFpbCIsInJvbGVzIjpbImFkbWluIl0sImlzcyI6Ii9tYXlhbWNvZi9sb2dpbiIsImV4cCI6MTY5NjUzNzYyMn0.FbMz9gvaQZm1rMlIrX2rEej3MBIXJk98vnb2pcNOqMM';
   headers= new HttpHeaders({
-    'Authorization': 'Bearer '+this.token
+    'Authorization': 'Bearer '+environment.Token
   });
   constructor(private http:HttpClient) { }
 

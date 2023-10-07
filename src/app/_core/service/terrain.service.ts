@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class TerrainService {
   token= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWFpbCIsInJvbGVzIjpbImFkbWluIl0sImlzcyI6Ii9tYXlhbWNvZi9sb2dpbiIsImV4cCI6MTY5NjYwOTg4N30.ZNTDCLKI78MvZwxm86nwB7YwPrdb09rJ6AEh2koea-c';
   headers= new HttpHeaders({
-    'Authorization': 'Bearer '+this.token
+    'Authorization': 'Bearer '+environment.Token
   });
   constructor(private http:HttpClient) { }
 
