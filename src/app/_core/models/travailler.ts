@@ -1,3 +1,4 @@
+import { Construction } from "./construction";
 import { Employer } from "./employer";
 import { Terrain } from "./terrain";
 
@@ -9,7 +10,7 @@ export interface Travailler {
 	datefin:Date;
 	
 	
-	terrain:Terrain;
+	construction:Construction;
 	
 	
 	employer:Employer;
