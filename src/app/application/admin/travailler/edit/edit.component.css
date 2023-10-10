@@ -1,0 +1,23 @@
+.example-form {
+    
+    width: auto;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  mat-card{
+    background-color:#f4f4f8 ;
+  }
+  .mat-card-header{
+    align-items: center;
+  }
+  .flex-fill{
+    flex: 1 1 auto!important;
+}
+.btnR{
+  padding-left: 11px;
+  padding-right: 18px;
+  width: 100px;
+  height: 41px;
+}

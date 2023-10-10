@@ -1,0 +1,57 @@
+<h2>{{idT?'Modifier ':'Ajouter '}}Travail sur Construction numero: {{id}}</h2>
+<mat-card>
+    <mat-card-header>
+      <button mat-fab extended  color="warn" class="btnR" [routerLink]="['/mayamcof/admin/travailler/'+id]"><mat-icon>keyboard_arrow_left</mat-icon> Retour</button>
+        <span class="flex-fill"></span>
+        <button mat-fab extended  color="primary" type="submit" form="form" [disabled]="!registerForm.valid">Enregistrer</button>
+    </mat-card-header>
+    <mat-card-content class="mt-3">
+        <form class="example-form"[formGroup]="registerForm" (ngSubmit)="sub()" id="form">
+            <div class="container text-center">
+                <div class="row align-items-start">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Date Debut</mat-label>
+                            <input matInput formControlName="datedebut" id="datedebut" [matDatepicker]="picker">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="registerForm.get('datedebut')?.getError('required')">
+                                Date Debut est <strong>Obligatoire</strong>
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('datedebut')?.getError('dateRange')">
+                                La date de début doit être antérieure à la date de fin.
+                            </mat-error>
+                          </mat-form-field>
+                    </div>                    
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Date Fin</mat-label>
+                            <input matInput (ngModelChange)="verifier()" formControlName="datefin" id="datefin" [matDatepicker]="picker1">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                            <mat-error *ngIf="registerForm.get('datefin')?.getError('required')">
+                                Date Fin est <strong>Obligatoire</strong>
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('datefin')?.getError('dateRange')">
+                                La date de fin doit être ultérieure à la date de début.
+                            </mat-error>
+                          </mat-form-field>
+                    </div>    
+                    <div class="col">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Employer</mat-label>
+                      <mat-select formControlName="employer" matInput >
+                        <mat-option value="" disabled>Selectionner un employer</mat-option>
+                        <mat-option *ngFor="let employer of employers" [value]="employer.id">{{ employer.nom }}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="registerForm.controls['employer'].hasError('required')">
+                        Employer est <strong>Obligatoire</strong>
+                      </mat-error>
+                    </mat-form-field>
+                    </div>
+                </div>
+              </div>
+        </form>
+    </mat-card-content>
+    
+</mat-card>
