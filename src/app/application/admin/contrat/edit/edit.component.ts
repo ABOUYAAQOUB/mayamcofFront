@@ -33,20 +33,20 @@ export class EditComponent implements OnInit{
   ngOnInit(): void {
     this.checkparam = this.routeparam.snapshot.paramMap.get("id");
     if(this.checkparam){
-      
-      this.serviceContrat.getContrat(this.checkparam).subscribe(res =>{
+      const fakeFile = new File([""], "example.txt", { type: "text/plain" });
+      this.serviceContrat.getContrat(this.checkparam).subscribe(res =>{console.log("Sa");console.log(res);
         this.base64Output = res.contratpdf;
         this.registerForm.setValue({
           date: new Date(res.datecontrat),
           terrain:res.terrain.id,
-          file:''
+          file:{name:res.id+"Contrat"+new Date(res.datecontrat)},
+         
         });
-       
-        this.registerForm.patchValue({
-          file:this.selectedFiles
-        });
-        console.log(res);
+      
+        
+        //console.log(res);
       });
+      //this.registerForm.controls['file'].removeValidators(Validators.required);
       this.getTerrainsUpdate(this.checkparam);
 
     }else{
@@ -62,15 +62,16 @@ export class EditComponent implements OnInit{
       if(this.checkparam){
 
       }else{
-
+        console.log("Ajouter");
         this.contrat = {
           datecontrat:this.registerForm.get('date')?.value,
           contratpdf:this.base64Output,
           terrain:{id:this.registerForm.get('terrain')?.value}
         };
-
+        console.log(this.contrat);
         this.serviceContrat.addContrat(this.contrat).subscribe(res =>{
           this.contrat = res;
+          console.log(res);
         });
 
       }
@@ -92,22 +93,21 @@ export class EditComponent implements OnInit{
   getTerrainsUpdate(id:number){
     this.serviceTerrain.getTerrainUpdate(id).subscribe(res =>{
       this.terrains = res;
-      console.log(this.terrains);
+    //  console.log(this.terrains);
     });
   }
   
   onFileSelected(event:Event) {
     this.selectedFiles = (event.target as HTMLInputElement).files?.item(0)?.name;
-    let file1:File|any = (event.target as HTMLInputElement).files?.item(0);
+    this.registerForm.get('file')?.setValue({name:this.selectedFiles})
+    let file:File|any = (event.target as HTMLInputElement).files?.item(0);
     console.log((event.target as HTMLInputElement).files?.item(0));
-    this.convertFile(file1).subscribe((base64:any) => {
+    this.convertFile(file).subscribe((base64:any) => {
       this.base64Output = base64;
       console.log(this.base64Output);
     });
 
-    this.registerForm.patchValue({
-      file: file1
-    });
+    
     console.log("ok");
     
   }
