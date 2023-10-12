@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +12,7 @@ import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppress
   templateUrl: './consulte.component.html',
   styleUrls: ['./consulte.component.css']
 })
-export class ConsulteComponent {
+export class ConsulteComponent implements OnInit{
 
   displayedColumns: string[] = ['id','datecontrat','terrain', 'contratpdf','action'];
   dataSource = new MatTableDataSource<Contrat>();

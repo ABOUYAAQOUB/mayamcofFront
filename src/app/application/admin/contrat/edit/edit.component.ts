@@ -7,6 +7,7 @@ import { Contrat } from 'src/app/_core/models/contrat';
 import { Terrain } from 'src/app/_core/models/terrain';
 import { ContratService } from 'src/app/_core/service/contrat.service';
 import { TerrainService } from 'src/app/_core/service/terrain.service';
+import { EditComponentP } from 'src/app/_shear/dialog/edit/edit.component';
 
 export interface FileUplod{
   name:string;
@@ -28,7 +29,7 @@ export class EditComponent implements OnInit{
   terrains:Terrain|any;
   fileUplod:FileUplod|any;
   //file:File|any;
-  constructor(private serviceContrat:ContratService,private serviceTerrain:TerrainService,private _snackBar: MatSnackBar,private route:Router,private routeparam:ActivatedRoute,private builder:FormBuilder){}
+  constructor(private _snackBar: MatSnackBar,private serviceContrat:ContratService,private serviceTerrain:TerrainService,private route:Router,private routeparam:ActivatedRoute,private builder:FormBuilder){}
   
   ngOnInit(): void {
     this.checkparam = this.routeparam.snapshot.paramMap.get("id");
@@ -42,6 +43,17 @@ export class EditComponent implements OnInit{
     }
     
     
+  }
+
+  openSnackBar(name:string) {
+    this._snackBar.openFromComponent(EditComponentP, {
+      duration: 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+      data: 'Le Contrat a éte Bien '+name
+    });
+
   }
 
   getContart(){
@@ -78,12 +90,14 @@ export class EditComponent implements OnInit{
   ajouterContrat(contrat:Contrat){
     this.serviceContrat.addContrat(contrat).subscribe(res =>{
       console.log(res);
+      this.openSnackBar("Ajouter");
     });
   }
 
   updaterContrat(contrat:Contrat){
    this.serviceContrat.updateContrat(contrat).subscribe(res =>{
           console.log(res);
+          this.openSnackBar("Modifier");
     });
   }
 
