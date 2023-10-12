@@ -34,21 +34,9 @@ export class EditComponent implements OnInit{
     this.checkparam = this.routeparam.snapshot.paramMap.get("id");
     if(this.checkparam){
       const fakeFile = new File([""], "example.txt", { type: "text/plain" });
-      this.serviceContrat.getContrat(this.checkparam).subscribe(res =>{console.log("Sa");console.log(res);
-        this.base64Output = res.contratpdf;
-        this.registerForm.setValue({
-          date: new Date(res.datecontrat),
-          terrain:res.terrain.id,
-          file:{name:res.id+"Contrat"+new Date(res.datecontrat)},
-         
-        });
-      
-        
-        //console.log(res);
-      });
-      //this.registerForm.controls['file'].removeValidators(Validators.required);
+      this.getContart();
       this.getTerrainsUpdate(this.checkparam);
-
+      
     }else{
       this.getTerrains();
     }
@@ -56,26 +44,51 @@ export class EditComponent implements OnInit{
     
   }
 
+  getContart(){
+    this.serviceContrat.getContrat(this.checkparam).subscribe(res =>{console.log("Sa");console.log(res);
+    this.base64Output = res.contratpdf;
+    this.registerForm.setValue({
+      date: new Date(res.datecontrat),
+      terrain:res.terrain.id,
+      file:{name:res.id+"Contrat"+new Date(res.datecontrat)},
+     
+    });
+  
+  });
+  }
+
   sub(){
     if(this.registerForm.valid){
+      this.contrat = {
+        datecontrat:this.registerForm.get('date')?.value,
+        contratpdf:this.base64Output,
+        terrain:{id:this.registerForm.get('terrain')?.value}
+      };
 
       if(this.checkparam){
-
+        this.contrat.id = this.checkparam;
+        this. updaterContrat(this.contrat)
       }else{
-        console.log("Ajouter");
-        this.contrat = {
-          datecontrat:this.registerForm.get('date')?.value,
-          contratpdf:this.base64Output,
-          terrain:{id:this.registerForm.get('terrain')?.value}
-        };
-        console.log(this.contrat);
-        this.serviceContrat.addContrat(this.contrat).subscribe(res =>{
-          this.contrat = res;
-          console.log(res);
-        });
-
+        this.ajouterContrat(this.contrat);
       }
+      this.retourn();
     }
+  }
+
+  ajouterContrat(contrat:Contrat){
+    this.serviceContrat.addContrat(contrat).subscribe(res =>{
+      console.log(res);
+    });
+  }
+
+  updaterContrat(contrat:Contrat){
+   this.serviceContrat.updateContrat(contrat).subscribe(res =>{
+          console.log(res);
+    });
+  }
+
+  retourn(){
+    this.route.navigateByUrl('mayamcof/admin/contrat');
   }
 
   registerForm:FormGroup = this.builder.group({
@@ -93,7 +106,6 @@ export class EditComponent implements OnInit{
   getTerrainsUpdate(id:number){
     this.serviceTerrain.getTerrainUpdate(id).subscribe(res =>{
       this.terrains = res;
-    //  console.log(this.terrains);
     });
   }
   
