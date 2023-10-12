@@ -34,4 +34,14 @@ export class TerrainService {
   deleteTerrain(id:number){
     return this.http.delete<Terrain>(environment.apiURL+"/terrain/"+id,{headers:this.headers});
   }
+
+  getTerrainWithAnyContrat():Observable<Terrain[]>{
+      return this.http.get<Terrain[]>(environment.apiURL+"/terrainsAnyContrat",{headers:this.headers});
+  }
+
+  getTerrainUpdate(id:number){
+    return this.http.get<Terrain[]>(environment.apiURL+"/getTerrainUpdate/"+id,{headers:this.headers})
+  }
+
+  // select t.* from terrains t where t.id not in (select t.id from terrains t, contrats c where c.id!=1 and t.id = c.terrain_id );
 }

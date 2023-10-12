@@ -41,6 +41,10 @@ const routes: Routes = [
   {
     path:"terrain",
     loadChildren:()=>import('./terrain/terrain.module').then(app=>app.TerrainModule)
+  },
+  {
+    path:"contrat",
+    loadChildren:()=>import('./contrat/contrat.module').then(app=>app.ContratModule)
   }
 
 ];
