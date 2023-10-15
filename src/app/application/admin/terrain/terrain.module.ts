@@ -5,12 +5,14 @@ import { TerrainRoutingModule } from './terrain-routing.module';
 import { ConsultComponent } from './consult/consult.component';
 import { EditComponent } from './edit/edit.component';
 import { ShearModule } from 'src/app/_shear/shear.module';
+import { DevisPdfComponent } from './devis-pdf/devis-pdf.component';
 
 
 @NgModule({
   declarations: [
     ConsultComponent,
-    EditComponent
+    EditComponent,
+    DevisPdfComponent
   ],
   imports: [
     CommonModule,

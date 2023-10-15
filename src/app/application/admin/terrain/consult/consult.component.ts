@@ -2,7 +2,9 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Construction } from 'src/app/_core/models/construction';
 import { Terrain } from 'src/app/_core/models/terrain';
+import { ConstructionService } from 'src/app/_core/service/construction.service';
 import { TerrainService } from 'src/app/_core/service/terrain.service';
 import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppression.component';
 
@@ -14,10 +16,14 @@ import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppress
 export class ConsultComponent implements AfterViewInit, OnInit{
   displayedColumns: string[] = ['id', 'surface','etage', 'adresse','client', "action"];
   dataSource = new MatTableDataSource<Terrain>();
-  constructor(private TerrainService:TerrainService, private dialog:MatDialog) {}
+  count:boolean|any;
+  constructions:Construction[]|any;
+
+  constructor(private TerrainService:TerrainService, private dialog:MatDialog,private constructionService:ConstructionService) {}
 
   ngOnInit(): void {
     this.getTerrains();
+    this.getconstruction();
   }
 
   openDialog(name:string, id:number){
@@ -59,5 +65,26 @@ export class ConsultComponent implements AfterViewInit, OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  getconstruction(){
+    this.constructionService.getConstructions().subscribe({
+      next: data => {
+        this.constructions = data;
+        this.check(2);
+      },
+      error: err => {
+        console.log(err.error.message)
+      }
+    })
+  }
+
+  check(id:number):boolean{
+
+    return this.constructions.filter((constructio:Construction) => constructio.terrain.id == id).length > 0 ? false : true; 
+  }
+
+  devis(id:number){
+    window.open('/mayamcof/admin/terrain/generete/'+id, '_blank');
   }
 }
