@@ -1,0 +1,26 @@
+.example-card > mat-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.example-card > mat-icon{
+    width: 40px;
+    font-size: 30px;
+    height: 40px;
+}
+.example-card{
+    
+}
+
+.card1{
+    background-color: #b3e0ee;
+}
+.card2{
+    background-color: #6e7afc;
+}
+.card3{
+    background-color: #f390e4;
+}
+.card4{
+    background-color: #ffffb2;
+}

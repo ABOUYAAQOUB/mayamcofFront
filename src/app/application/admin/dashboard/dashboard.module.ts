@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ContainerComponent } from './container/container.component';
 import { ShearModule } from 'src/app/_shear/shear.module';
-
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { ShearModule } from 'src/app/_shear/shear.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ShearModule
+    ShearModule,
+    CanvasJSAngularChartsModule
   ]
 })
 export class DashboardModule { }

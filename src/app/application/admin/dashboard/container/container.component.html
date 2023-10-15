@@ -1,2 +1,70 @@
-<p>dashboard</p>
+<mat-card>
+    <h1 style="margin-top: 5px; margin-left: 15px;">Dashboard</h1>    
+    <mat-card-content>
+        <div class="row">
+            <div class="col-6 row">
+                <div class="col-6 mb-2">
+                    <mat-card class="example-card card1">
+                        <mat-card-header>
+                          <mat-card-title>Clients</mat-card-title><mat-icon>supervisor_account</mat-icon>
+                        </mat-card-header>
+                        <mat-card-content>
+                          <h2>{{client}}</h2>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-button [routerLink]="['/mayamcof/admin/client']">Voir plus</button>                          
+                        </mat-card-actions>
+                      </mat-card>
+                </div>
+                <div class="col-6 mb-2">
+                    <mat-card class="example-card card2">
+                        <mat-card-header>
+                          <mat-card-title>Employer</mat-card-title><mat-icon>rowing</mat-icon>
+                        </mat-card-header>
+                        <mat-card-content>
+                          <h2>{{employer}}</h2>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-button [routerLink]="['/mayamcof/admin/employer']">Voir plus</button>
+                        </mat-card-actions>
+                      </mat-card>
+                </div>
+                <div class="col-6 mb-2">
+                    <mat-card class="example-card card3">
+                        <mat-card-header>
+                          <mat-card-title>Fournisseurs</mat-card-title><mat-icon>local_shipping</mat-icon>
+                        </mat-card-header>
+                        <mat-card-content>
+                          <h2>{{fournisseur}}</h2>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-button [routerLink]="['/mayamcof/admin/fournisseur']">Voir plus</button>
+                        </mat-card-actions>
+                      </mat-card>
+                </div>
+                <div class="col-6 mb-2">
+                    <mat-card class="example-card card4">
+                        <mat-card-header>
+                          <mat-card-title>Batiment</mat-card-title><mat-icon>domain</mat-icon>
+                        </mat-card-header>
+                        <mat-card-content>
+                          <h2>{{batement}}</h2>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-button [routerLink]="['/mayamcof/admin/terrain']">Voir plus</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="col-6">
+                
+                    <canvasjs-chart [options]="chartOptions" [styles]="{width: 'auto', height:'300px', margin:'0 0 40 0'}"></canvasjs-chart>    
+                
+            </div>
+            <div class="col-12">
+                <canvasjs-chart [options]="chartOptionsdate" [styles]="{width: 'auto', height:'150px'}"></canvasjs-chart>   
 
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
