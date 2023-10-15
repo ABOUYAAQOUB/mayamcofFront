@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path:"admin/terrain/generete/:id",
     component:DevisPdfComponent
-  }
+  },
+  {
+    path:"login",
+    loadChildren:()=>import('./authentification/authentification.module').then(app=>app.AuthentificationModule)
+  },
 
 ];
 
