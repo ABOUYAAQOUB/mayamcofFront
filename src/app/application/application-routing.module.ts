@@ -20,6 +20,14 @@ const routes: Routes = [
   {
     path:"user",
     loadChildren:()=>import('./user/user.module').then(app=>app.UserModule)
+  },
+  { 
+    path:'admin/facture/generete/:id', 
+    component:FacturePdfComponent
+  },
+  {
+    path:"admin/terrain/generete/:id",
+    component:DevisPdfComponent
   }
 
 ];
