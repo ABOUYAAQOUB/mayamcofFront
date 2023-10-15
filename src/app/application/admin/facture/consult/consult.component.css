@@ -27,10 +27,23 @@
     box-shadow: 5px 2px 8px 0px #f1d5d5;
     border: 1px solid white;
     border-radius: 4px;
+    margin-right: 10px;
+}
+
+.action-facture{
+  background-color: white;
+  border: none;
+  box-shadow: 5px 2px 8px 0px #f1d5d5;
+  border: 1px solid white;
+  border-radius: 4px;
 }
 
  .action-delete:hover{
     box-shadow: 5px 2px 8px 0px #e69494;
+}
+
+.action-facture:hover{
+  box-shadow: 5px 2px 8px 0px #a2f3fe;
 }
 
 .iconUpdate{
@@ -42,6 +55,11 @@
     color: rgb(189, 8, 8);
     padding-top: 3px;
     font-size: 22px;
+}
+.iconFacture{
+  color: rgb(38 128 129);
+  padding-top: 3px;
+  font-size: 22px;
 }
 
 

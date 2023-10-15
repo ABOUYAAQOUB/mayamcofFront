@@ -98,6 +98,7 @@ export class ConsultComponent implements OnInit {
   }
 
   getTotale(id:number):Number{
+    this.total=0
     this.constructions.filter((cons:Construction)=>cons.facture!==null && cons.facture.id==id).forEach((element:Construction)=>{
       this.total+=Number(element.prix)*Number(element.quantite);
     })
@@ -114,6 +115,10 @@ export class ConsultComponent implements OnInit {
      }
    });
    return adresse;
+  }
+
+  facture(id:number){
+    window.open('/mayamcof/admin/facture/generete/'+id, '_blank');
   }
 
 }

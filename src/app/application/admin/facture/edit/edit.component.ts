@@ -12,6 +12,7 @@ import { Terrain } from 'src/app/_core/models/terrain';
 import { ConstructionService } from 'src/app/_core/service/construction.service';
 import { FactureService } from 'src/app/_core/service/facture.service';
 import { TerrainService } from 'src/app/_core/service/terrain.service';
+import { EditComponentP } from 'src/app/_shear/dialog/edit/edit.component';
 
 
 @Component({
@@ -47,6 +48,17 @@ export class EditComponent implements OnInit {
        
     }
     this.getTerrain();
+  }
+
+  openSnackBar(name:string) {
+    this._snackBar.openFromComponent(EditComponentP, {
+      duration: 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+      data: 'la facture a éte Bien '+name
+    });
+
   }
 
   
@@ -179,10 +191,13 @@ export class EditComponent implements OnInit {
      if(this.facturefrom.get('id')?.value){
       this.facture.id=this.facturefrom.get('id')?.value;
       this.udatefacture(this.facture);
+      this.openSnackBar("Modifier");
      }else{
       this.addfacture(this.facture);
+      this.openSnackBar("Ajouter");
      }
      this.retourn();
+     
   }
 
   updateConstruction(construction:Construction){
@@ -208,7 +223,6 @@ export class EditComponent implements OnInit {
       }else{
         ele.facture = null;
       }
-      console.log(ele);
       this.updateConstruction(ele);
     })
   }
