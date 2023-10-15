@@ -47,7 +47,8 @@
           <button class="action-delete" (click)="openDialog(element.adresse, element.id)"><mat-icon class="iconDelete ">delete</mat-icon></button> 
           <button class="action-construction" [routerLink]="['/mayamcof/admin/construction/'+element.id]">
             <mat-icon class="iconConstruction">business</mat-icon>
-          </button>          
+          </button>
+          <button class="action-facture" [disabled]="check(element.id)" (click)="devis(element.id)" ><mat-icon class="iconFacture ">description</mat-icon></button>       
       </td>
   </ng-container>
   

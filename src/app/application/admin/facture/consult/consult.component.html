@@ -1,0 +1,61 @@
+<h2>Liste Factures</h2>
+<div>
+    <mat-form-field class="example-full-width">
+        <mat-label>Rechercher</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Nom Date" #input>
+        <mat-icon matSuffix class="chercher">find_replace</mat-icon>
+      </mat-form-field>
+      <button [routerLink]="['ajouter']"  mat-fab extended class="ajouter" color="primary">
+        <mat-icon>add_circle_outline</mat-icon>
+        Ajouter
+      </button>
+</div>
+
+  <table mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td mat-cell *matCellDef="let element"> {{ (column !== "terrain" && column !== "client") ? column == "datefacture" ? (element[column] | date) : element[column] :  (column == "terrain" ? getTerrain(element.id) : getClient(element.id) ) }} </td>
+  </ng-container>
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+      </button>
+      <button class="action-update" [routerLink]="['modifier',element.id]" ><mat-icon class="iconUpdate">border_color</mat-icon></button> 
+      <button class="action-delete" (click)="openDialog(element.id)"><mat-icon class="iconDelete ">delete</mat-icon></button>
+      <button class="action-facture" (click)="facture(element.id)"  target="_blank" ><mat-icon class="iconFacture ">description</mat-icon></button> 
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="w-100">
+          <div class="example-element-ht"> <b> Totale HT :</b> <span>{{getTotale(element.id)}}</span> </div>
+          <hr>
+          <div class="example-element-tva"> <b> TVA :</b> <span>{{ total * 0.2}} </span> </div>
+          <hr>
+          <div class="example-element-symbol"> <b> Totale TTC :</b> <span>{{total + total * 0.2 }}</span> </div>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+  <mat-paginator [pageSizeOptions]="[3]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>

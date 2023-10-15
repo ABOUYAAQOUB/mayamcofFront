@@ -1,0 +1,113 @@
+.ajouter{
+    float: right;
+}
+.matInput{
+    border-radius: 200px;
+}
+.chercher{
+    color: #2747fb;
+}
+
+.action-update{
+    background-color: white;
+    border: none;
+    box-shadow: 5px 2px 8px 0px #d5e0f1;
+    margin-right: 10px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+ .action-update:hover{
+    box-shadow: 5px 2px 8px 0px #94b4e6;
+}
+
+.action-delete{
+    background-color: white;
+    border: none;
+    box-shadow: 5px 2px 8px 0px #f1d5d5;
+    border: 1px solid white;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.action-facture{
+  background-color: white;
+  border: none;
+  box-shadow: 5px 2px 8px 0px #f1d5d5;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+ .action-delete:hover{
+    box-shadow: 5px 2px 8px 0px #e69494;
+}
+
+.action-facture:hover{
+  box-shadow: 5px 2px 8px 0px #a2f3fe;
+}
+
+.iconUpdate{
+    color: #2747fb;
+    padding-top: 3px;
+    font-size: 22px;
+}
+.iconDelete{
+    color: rgb(189, 8, 8);
+    padding-top: 3px;
+    font-size: 22px;
+}
+.iconFacture{
+  color: rgb(38 128 129);
+  padding-top: 3px;
+  font-size: 22px;
+}
+
+
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  
