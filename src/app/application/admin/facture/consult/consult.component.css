@@ -27,10 +27,23 @@
     box-shadow: 5px 2px 8px 0px #f1d5d5;
     border: 1px solid white;
     border-radius: 4px;
+    margin-right: 10px;
+}
+
+.action-facture{
+  background-color: white;
+  border: none;
+  box-shadow: 5px 2px 8px 0px #f1d5d5;
+  border: 1px solid white;
+  border-radius: 4px;
 }
 
  .action-delete:hover{
     box-shadow: 5px 2px 8px 0px #e69494;
+}
+
+.action-facture:hover{
+  box-shadow: 5px 2px 8px 0px #a2f3fe;
 }
 
 .iconUpdate{
@@ -43,6 +56,13 @@
     padding-top: 3px;
     font-size: 22px;
 }
+.iconFacture{
+  color: rgb(38 128 129);
+  padding-top: 3px;
+  font-size: 22px;
+}
+
+
 table {
     width: 100%;
   }
@@ -65,6 +85,7 @@ table {
   
   .example-element-detail {
     overflow: hidden;
+    display: flex;
   }
   
   .example-element-diagram {
@@ -78,7 +99,7 @@ table {
   
   .example-element-symbol {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 20px;
     line-height: normal;
   }
   
@@ -89,57 +110,4 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
-  .facture{
-    left: 47% !important;
-    position: relative;
-  }
-  .example-container {
-   
-    overflow: auto;
-  }
   
-  table {
-    width: 100%;
-  }
-  
-  tr.mat-mdc-footer-row {
-    font-weight: bold;
-  }
-  
-  .mat-mdc-table-sticky {
-    border-top: 1px solid #e0e0e0;
-  }
-  .montant{
-    position: relative;
-    right: 200px;
-  }
-
-  .example-full-width{
-    position: relative;
-    left: 200px;
-    width: 400px;
-  }
-
-  .action-update {
-    position: relative;
-    display: inline-block;
-   
-  }
-  
-  .action-update .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-  }
-  
-  .action-update:hover .tooltiptext {
-    visibility: visible;
-  }

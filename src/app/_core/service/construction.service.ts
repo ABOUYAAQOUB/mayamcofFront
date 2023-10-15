@@ -43,4 +43,8 @@ export class ConstructionService {
     return this.http.delete(environment.apiURL+ "/construction/"+id,{headers:this.headers});
   }
 
+  constructionParAnnnee():Observable<String>{
+    return this.http.get<String>(environment.apiURL+"/constructionParAnnee",{headers:this.headers});
+  }
+
 }

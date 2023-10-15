@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MasterpageComponent } from '../_shear/masterpage/masterpage.component';
+import { FacturePdfComponent } from './admin/facture/facture-pdf/facture-pdf.component';
+import { DevisPdfComponent } from './admin/terrain/devis-pdf/devis-pdf.component';
 
 const routes: Routes = [
   {
@@ -14,10 +16,6 @@ const routes: Routes = [
      ]
   },
   {
-    path:"admin",
-    loadChildren:()=>import('./admin/admin.module').then(app=>app.AdminModule)
-  },
-  {
     path:"user",
     loadChildren:()=>import('./user/user.module').then(app=>app.UserModule)
   },
@@ -28,7 +26,11 @@ const routes: Routes = [
   {
     path:"admin/terrain/generete/:id",
     component:DevisPdfComponent
-  }
+  },
+  {
+    path:"login",
+    loadChildren:()=>import('./authentification/authentification.module').then(app=>app.AuthentificationModule)
+  },
 
 ];
 

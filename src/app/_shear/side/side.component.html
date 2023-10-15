@@ -52,17 +52,17 @@
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>assignment</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Contrats</span>
+                <mat-icon>assignment</mat-icon><span class="ms-2 itemmenu" [routerLink]="['/mayamcof/admin/contrat']" *ngIf="opend">Contrats</span>
         </div>
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>note</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Factures</span>
+                <mat-icon>note</mat-icon><span class="ms-2 itemmenu" [routerLink]="['/mayamcof/admin/facture']" *ngIf="opend">Factures</span>
         </div>
         </mat-list-item>
         <mat-list-item href="#">
             <div class="d-inline-flex">
-                <mat-icon>portrait</mat-icon><span class="ms-2 itemmenu" *ngIf="opend">Utilisateurs</span>
+                <mat-icon>portrait</mat-icon><span class="ms-2 itemmenu"  *ngIf="opend">Utilisateurs</span>
         </div>
         </mat-list-item>
     </mat-nav-list>

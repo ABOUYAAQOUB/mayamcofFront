@@ -28,6 +28,16 @@
     border: 1px solid white;
     border-radius: 4px;
 }
+.action-facture{
+    background-color: white;
+    border: none;
+    box-shadow: 5px 2px 8px 0px #f1d5d5;
+    border: 1px solid white;
+    border-radius: 4px;
+  }
+  .action-facture:hover{
+    box-shadow: 5px 2px 8px 0px #a2f3fe;
+  }
 
  .action-delete:hover{
     box-shadow: 5px 2px 8px 0px #e69494;

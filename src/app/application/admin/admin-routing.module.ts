@@ -45,6 +45,14 @@ const routes: Routes = [
   {
     path:"contrat",
     loadChildren:()=>import('./contrat/contrat.module').then(app=>app.ContratModule)
+  },
+  {
+    path:"travailler/:id",
+    loadChildren:()=>import('./travailler/travailler.module').then(app=>app.TravaillerModule)
+  },
+  {
+    path:"facture",
+    loadChildren:()=>import('./facture/facture.module').then(app=>app.FactureModule)
   }
 
 ];
