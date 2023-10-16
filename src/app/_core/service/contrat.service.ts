@@ -3,18 +3,17 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Contrat } from '../models/contrat';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContratService {
-
-  
   
   headers= new HttpHeaders({
-    'Authorization': 'Bearer '+environment.Token
+    'Authorization': 'Bearer '+this.authService.getAccesToken()
   });
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private authService:AuthService) { }
   getContrats() :Observable<Contrat[]>{
     
     return this.http.get<Contrat[]>(environment.apiURL+'/contrats',{headers:this.headers});

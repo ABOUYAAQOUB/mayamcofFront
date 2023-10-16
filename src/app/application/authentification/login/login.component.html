@@ -31,6 +31,7 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
+                    <div class="erreur" *ngIf="form.hasError('exist')"><b>Nom d'utilisateur ou le mot de passe incorrecte</b></div>
                     <div class="col-12 text-center mt-3">
                         <button type="submit" class="btn">&nbsp;Connecte&nbsp;</button>
                     </div>

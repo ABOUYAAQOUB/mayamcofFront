@@ -27,20 +27,26 @@ export class LoginComponent implements OnInit{
     });
   }
 
+  logincheck(RefreshToken:string,AccessToken:string,username:string){
+    this.auth.authentification(RefreshToken,AccessToken,username).subscribe(res=>{
+      this.router.navigate(["/mayamcof/admin/dashboard"]);
+    });
+  }
+
   sub(){
-    
     this.user = {
       username:this.form.get('username').value,
       password:this.form.get('password').value
     };
     this.auth.auth(this.user).subscribe({
       next:data =>{
-      //this.router.navigateByUrl('/mayamcof/admin/fournisseur');
-      console.log(data);
-    },
+        let username:string = this.auth.payload(data['access-token']).sub
+        this.logincheck(data['refresh-token'],data['access-token'],username)
+     },
     error:err =>{
-      //this.registerForm.get('ice')?.setErrors({'exist':true});
-      console.log(err);
+     if(err.error.message=="Username or password incorrect"){
+       this.form.setErrors({'exist':true});
+     }
     }});
     console.log(this.user);
   }

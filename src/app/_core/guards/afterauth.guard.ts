@@ -12,7 +12,7 @@ export class AfterauthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(1){
+      if(this.serviceAuth.isAuthentification()){
         this.router.navigate(["/mayamcof/admin/dashboard"]);
         return false;
       }

@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Facture } from '../models/facture';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FactureService {
   headers= new HttpHeaders({
-    'Authorization': 'Bearer '+environment.Token
+    'Authorization': 'Bearer '+this.authService.getAccesToken()
   });
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private authService:AuthService) { }
 
   getFactures() :Observable<Facture[]>{
     

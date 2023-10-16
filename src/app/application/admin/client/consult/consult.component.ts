@@ -2,8 +2,9 @@ import { AfterViewInit, Component, OnInit,ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Client } from 'src/app/_core/models/client';
+import { AuthService } from 'src/app/_core/service/auth.service';
 import { ClientService } from 'src/app/_core/service/client.service';
 import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppression.component';
 
@@ -16,7 +17,7 @@ import { SuppressionComponent } from 'src/app/_shear/dialog/suppression/suppress
 export class ConsultComponent implements AfterViewInit, OnInit{
   displayedColumns: string[] = ['id', 'cin','email', 'nom', 'tel','action'];
   dataSource = new MatTableDataSource<Client>();
-  constructor(private clientService:ClientService, private activeRoute: ActivatedRoute, private dialog:MatDialog) {}
+  constructor(private clientService:ClientService, private router: Router, private dialog:MatDialog,private auth:AuthService) {}
 
   ngOnInit(): void {
     this.getClients();
@@ -34,12 +35,33 @@ export class ConsultComponent implements AfterViewInit, OnInit{
     this.clientService.getClients().subscribe({
       next:data=>{
         this.dataSource.data=data;
-        console.log(data);
+       // console.log(data);
       },
       error: err => {
-        console.log(err)
+        this.verifier(err.error.message);
+        this.getClients();
       }
     });
+  }
+
+  verifier(msg:string){
+    if(msg=="Token inccorecte"){
+      this.auth.logout();
+      this.router.navigate(["mayamcof/login"]);
+    }else{
+      this.auth.refreshtoken().subscribe({
+        next:data=>{
+          localStorage.clear();
+          let username:string = this.auth.payload(data['access-token']).sub
+          this.auth.authentification(data['refresh-token'],data['access-token'],username)
+          console.log(this.auth.getAccesToken());
+        },
+        error:err=>{
+          this.auth.logout();
+          this.router.navigate(["mayamcof/login"]);
+        }
+      })      
+    }   
   }
 
   deleteClient(id:number){

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_core/service/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,13 +9,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class NavComponent {
   @Output() toggelSidebarForMe : EventEmitter<any> = new EventEmitter();
-  x=5;
+  Username:string|any;
+  constructor(private auth:AuthService,private router:Router){}
 
   ngOnInit(): void {
-    
+    this.Username = this.auth.getUsername();
   }
 
   toggelSideBar(){
-    this.toggelSidebarForMe.emit(this.x);
+    this.toggelSidebarForMe.emit();
+  }
+
+  logout(){
+    this.auth.logout();
+    this.router.navigate(["/mayamcof/login"])
   }
 }

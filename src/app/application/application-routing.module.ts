@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MasterpageComponent } from '../_shear/masterpage/masterpage.component';
 import { FacturePdfComponent } from './admin/facture/facture-pdf/facture-pdf.component';
 import { DevisPdfComponent } from './admin/terrain/devis-pdf/devis-pdf.component';
+import { AfterauthGuard } from '../_core/guards/afterauth.guard';
+import { AuthentificationGuard } from '../_core/guards/authentification.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +15,8 @@ const routes: Routes = [
         path:"admin",
         loadChildren:()=>import('./admin/admin.module').then(app=>app.AdminModule)    
       }
-     ]
+     ],
+     canActivate:[AuthentificationGuard]
   },
   {
     path:"user",
@@ -29,7 +32,8 @@ const routes: Routes = [
   },
   {
     path:"login",
-    loadChildren:()=>import('./authentification/authentification.module').then(app=>app.AuthentificationModule)
+    loadChildren:()=>import('./authentification/authentification.module').then(app=>app.AuthentificationModule),
+    canActivate:[AfterauthGuard]
   },
 
 ];

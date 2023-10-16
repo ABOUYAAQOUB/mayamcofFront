@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 import { Terrain } from '../models/terrain';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TerrainService {
-  token= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWFpbCIsInJvbGVzIjpbImFkbWluIl0sImlzcyI6Ii9tYXlhbWNvZi9sb2dpbiIsImV4cCI6MTY5NjYwOTg4N30.ZNTDCLKI78MvZwxm86nwB7YwPrdb09rJ6AEh2koea-c';
   headers= new HttpHeaders({
-    'Authorization': 'Bearer '+environment.Token
+    'Authorization': 'Bearer '+this.authService.getAccesToken()
   });
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private authService:AuthService) { }
 
   getTerrains() :Observable<Terrain[]>{
     

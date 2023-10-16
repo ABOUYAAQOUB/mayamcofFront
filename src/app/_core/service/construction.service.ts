@@ -4,20 +4,19 @@ import { Construction } from '../models/construction';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Terrain } from '../models/terrain';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConstructionService {
 
-  TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNzaW5lIiwicm9sZXMiOlsidXNlciJdLCJpc3MiOiIvbWF5YW1jb2YvbG9naW4iLCJleHAiOjE2OTYyODMwMjh9.Y17GhUvge8SfXBbm1Rn8JiCIt6Breeu1gasb_FW9gdw'
-
-  headers = new HttpHeaders({
-    'Authorization': 'Bearer '+environment.Token
+ headers = new HttpHeaders({
+    'Authorization': 'Bearer '+this.authService.getAccesToken()
   });
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService:AuthService) { }
 
   getConstructions(): Observable<Construction[]> {
     return this.http.get<Construction[]>(environment.apiURL+ "/constructions",{headers:this.headers});

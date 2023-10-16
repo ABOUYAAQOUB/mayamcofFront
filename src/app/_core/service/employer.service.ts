@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 import { Employer } from '../models/employer';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployerService {
-  token= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWFpbCIsInJvbGVzIjpbImFkbWluIl0sImlzcyI6Ii9tYXlhbWNvZi9sb2dpbiIsImV4cCI6MTY5NjUzNzYyMn0.FbMz9gvaQZm1rMlIrX2rEej3MBIXJk98vnb2pcNOqMM';
   headers= new HttpHeaders({
-    'Authorization': 'Bearer '+environment.Token
+    'Authorization': 'Bearer '+this.authService.getAccesToken()
   });
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private authService:AuthService) { }
 
   getEmployers() :Observable<Employer[]>{
     

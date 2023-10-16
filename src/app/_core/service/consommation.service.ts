@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Consommation } from '../models/consommation';
 import { Produit } from '../models/produit';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,11 @@ import { Produit } from '../models/produit';
 export class ConsommationService {
 
   headers = new HttpHeaders({
-    'Authorization': 'Bearer '+environment.Token
+    'Authorization': 'Bearer '+this.authService.getAccesToken()
   });
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService:AuthService) { }
 
   getConsommations(): Observable<Consommation[]> {
     return this.http.get<Consommation[]>(environment.apiURL+ "/consommations",{headers:this.headers});
